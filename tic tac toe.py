@@ -35,7 +35,7 @@ while playing:
     if prev_turn == turn:
       print("Wybrałeś złe pole, spróbuj jeszcze raz.")
     prev_turn = turn
-    print("Gracz " + str((turn % 2) +1 ) + " twoja tura: Wybierz pole albo kliknij w żeby wyjść")
+    print("Gracz " + str((turn % 2) +1 ) + " twoja tura: Wybierz pole albo kliknij w żeby wyjść.")
     
     choice = input()
     if choice == 'w':
