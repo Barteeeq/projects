@@ -47,6 +47,7 @@ while playing:
       
     if check_for_win(spots): playing, complete = False, True
     if turn > 8: playing = False
+
 os.system('cls' if os.name == 'nt' else 'clear')
 draw_board(spots)
 if complete:
