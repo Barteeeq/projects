@@ -1,0 +1,236 @@
+var plansza = [
+  ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 'c', 'c', 's', 's', 'k', 'c', 'c', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 'c', 's', 'k', 's', 's', 's', 'c', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 'c', 's', 's', 's', 's', 's', 'c', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 'c', 's', 's', 's', 's', 's', 'c', 's', 's', 'c', 'c', 'c'],
+  ['c', 'c', 's', 'c', 'c', 'c', 's', 's', 's', 's', 's', 'c', 's', 's', 's', 'd', 'c'],
+  ['s', 's', 's', 's', 's', 'c', 's', 's', 's', 's', 's', 'c', 'c', 'c', 'c', 'c', 'c'],
+  ['s', 's', 's', 'c', 'k', 'c', 's', 's', 'k', 's', 's', 'c', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 'c', 's', 'c', 's', 's', 's', 's', 's', 'c', 'k', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 's', 's', 's', 'k', 's', 's', 's', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's'],
+  ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's'],
+];
+
+var rozmiar = 40;
+var graczWiersz = 2;
+var graczKolumna = 2;
+
+// funkcja rysująca pojedynczy wiersz
+function rysujWiersz(wiersz) {
+  for (var kolumna = 0; kolumna < plansza[wiersz].length; kolumna++) {
+    var x = kolumna * rozmiar;
+    var y = wiersz * rozmiar;
+    if (plansza[wiersz][kolumna] == 's') {
+      fillRectangle(x, y, rozmiar, rozmiar, colors.gray);
+    } else if (plansza[wiersz][kolumna] == 'c') {
+      rysujSciane(wiersz, kolumna, rozmiar);
+    } else if (plansza[wiersz][kolumna] == 'k') {
+      rysujKamien(wiersz, kolumna, rozmiar);
+    } else if (plansza[wiersz][kolumna] == 'd') {
+      rysujDziure(wiersz, kolumna, rozmiar);
+    }
+  }
+}
+
+function rysujSciane(wiersz, kolumna, rozmiar) {
+  var x = kolumna * rozmiar;
+  var y = wiersz * rozmiar;
+  var blok = rozmiar / 4;
+
+  fillRectangle(x, y, blok, blok, fillStyles.brown);
+  fillRectangle(x + blok, y, blok * 2, blok, fillStyles.red);
+  fillRectangle(x + blok * 3, y, blok, blok, fillStyles.brown);
+  fillRectangle(x, y + blok, blok * 2, blok, fillStyles.red);
+  fillRectangle(x + blok * 2, y + blok, blok * 2, blok, fillStyles.brown);
+  fillRectangle(x, y + blok * 2, blok, blok, fillStyles.red);
+  fillRectangle(x + blok, y + blok * 2, blok * 2, blok, fillStyles.brown);
+  fillRectangle(x + blok * 3, y + blok * 2, blok, blok, fillStyles.red);
+  fillRectangle(x, y + blok * 3, blok * 2, blok, fillStyles.brown);
+  fillRectangle(x + blok * 2, y + blok * 3, blok * 2, blok, fillStyles.red);
+}
+
+function rysujKamien(wiersz, kolumna, rozmiar) {
+  var x = kolumna * rozmiar;
+  var y = wiersz * rozmiar;
+  var promien = rozmiar / 2;
+
+  // tło
+  fillRectangle(x, y, rozmiar, rozmiar, fillStyles.gray);
+
+  // wnętrze
+  fillCircle(x + promien - 1, y + promien - 1, promien - 4, drawStyles.white);
+  fillCircle(x + promien - 1, y + promien, promien - 4, drawStyles.white);
+  fillCircle(x + promien, y + promien - 1, promien - 4, drawStyles.white);
+  fillCircle(x + promien, y + promien, promien - 4, drawStyles.white);
+
+  // obwódka
+  drawCircle(x + promien - 1, y + promien - 1, promien - 1, drawStyles.black);
+  drawCircle(x + promien - 1, y + promien, promien - 1, drawStyles.black);
+  drawCircle(x + promien, y + promien - 1, promien - 1, drawStyles.black);
+  drawCircle(x + promien, y + promien, promien - 1, drawStyles.black);
+  drawCircle(x + promien - 1, y + promien - 1, promien - 2, drawStyles.black);
+  drawCircle(x + promien - 1, y + promien, promien - 2, drawStyles.black);
+  drawCircle(x + promien, y + promien - 1, promien - 2, drawStyles.black);
+  drawCircle(x + promien, y + promien, promien - 2, drawStyles.black);
+
+  // wnętrze
+  fillCircle(x + 13, y + 11, 2, fillStyles.cyan);
+  fillCircle(x + 26, y + 10, 2, fillStyles.cyan);
+  fillCircle(x + 14, y + 25, 2, fillStyles.cyan);
+  fillCircle(x + 27, y + 16, 2, fillStyles.magenta);
+  fillCircle(x + 14, y + 15, 2, fillStyles.magenta);
+  fillCircle(x + 17, y + 28, 2, fillStyles.magenta);
+  fillCircle(x + 20, y + 13, 2, fillStyles.green);
+  fillCircle(x + 27, y + 27, 2, fillStyles.green);
+  fillCircle(x + 10, y + 22, 2, fillStyles.green);
+}
+
+function rysujDziure(wiersz, kolumna, rozmiar) {
+  var x = kolumna * rozmiar;
+  var y = wiersz * rozmiar;
+  var promien = rozmiar / 2;
+
+  // tło
+  fillRectangle(x, y, rozmiar, rozmiar, fillStyles.gray);
+
+  // wnętrze
+  fillCircle(x + promien - 1, y + promien - 1, promien - 4, drawStyles.black);
+  fillCircle(x + promien - 1, y + promien, promien - 4, drawStyles.black);
+  fillCircle(x + promien, y + promien - 1, promien - 4, drawStyles.black);
+  fillCircle(x + promien, y + promien, promien - 4, drawStyles.black);
+
+  // obwódka
+  drawCircle(x + promien - 1, y + promien - 1, promien - 1, drawStyles.cyan);
+  drawCircle(x + promien - 1, y + promien, promien - 1, drawStyles.cyan);
+  drawCircle(x + promien, y + promien - 1, promien - 1, drawStyles.cyan);
+  drawCircle(x + promien, y + promien, promien - 1, drawStyles.cyan);
+  drawCircle(x + promien - 1, y + promien - 1, promien - 2, drawStyles.cyan);
+  drawCircle(x + promien - 1, y + promien, promien - 2, drawStyles.cyan);
+  drawCircle(x + promien, y + promien - 1, promien - 2, drawStyles.cyan);
+  drawCircle(x + promien, y + promien, promien - 2, drawStyles.cyan);
+}
+
+// funkcja rysująca tyle wierszy, ile mamy zdefiniowanych w tablicy 2d o nazwie plansza
+function rysujPlansze() {
+  for (var wiersz = 0; wiersz < plansza.length; wiersz++) {
+    rysujWiersz(wiersz);
+  }
+}
+
+function rysujGracza() {
+  var x = graczKolumna * rozmiar;
+  var y = graczWiersz * rozmiar;
+
+  // Głowa:
+  fillCircle(x + 20, y + 5, 5, fillStyles.yellow);
+  fillCircle(x + 20, y + 6, 5, fillStyles.yellow);
+  fillCircle(x + 19, y + 5, 5, fillStyles.yellow);
+  fillCircle(x + 19, y + 6, 5, fillStyles.yellow);
+
+  // Ręce:
+  fillRectangle(x + 4, y + 10, 29, 4, fillStyles.blue);
+  fillRectangle(x + 3, y + 10, 3, 4, fillStyles.cyan);
+  fillRectangle(x + 30, y + 10, 3, 4, fillStyles.cyan);
+
+  // Tułów:
+  fillRectangle(x + 14, y + 14, 10, 5, fillStyles.blue);
+
+  // Nogi:
+  fillRectangle(x + 14, y + 19, 10, 4, fillStyles.green);
+  fillRectangle(x + 14, y + 22, 3, 10, fillStyles.green);
+  fillRectangle(x + 21, y + 22, 3, 10, fillStyles.green);
+}
+
+// funkcja, która obsłuży nam zdarzenie
+function obsluzKlawisz(e) {
+  var przesunWiersz = 0;
+  var przesunKolumne = 0;
+
+  if (e == 37) {
+    przesunKolumne = -1;
+  } else if (e == 38) {
+    przesunWiersz = -1;
+  } else if (e == 39) {
+    przesunKolumne = 1;
+  } else if (e == 40) {
+    przesunWiersz = 1;
+  }
+
+  // Nowe, bezpośrednio sąsiednie wiersz i kolumna.
+  var nowyWiersz = graczWiersz + przesunWiersz;
+  var nowaKolumna = graczKolumna + przesunKolumne;
+
+  // Nowe wiersz i kolumna w odległości 2
+  var nastepnyWiersz = graczWiersz + przesunWiersz * 2;
+  var nastepnaKolumna = graczKolumna + przesunKolumne * 2;
+
+  if (wolnePole(nowyWiersz, nowaKolumna)) {
+    graczWiersz = nowyWiersz;
+    graczKolumna = nowaKolumna;
+    rysujPlansze();
+    rysujGracza();
+  } else if (
+    poleZKamieniem(nowyWiersz, nowaKolumna) &&
+    wolnePole(nastepnyWiersz, nastepnaKolumna)) {
+    plansza[nastepnyWiersz][nastepnaKolumna] = 'k';
+    plansza[nowyWiersz][nowaKolumna] = 's';
+    graczWiersz = graczWiersz + przesunWiersz;
+    graczKolumna = graczKolumna + przesunKolumne;
+    rysujPlansze();
+    rysujGracza();
+  } else if (
+    poleZKamieniem(nowyWiersz, nowaKolumna) &&
+    poleZDziura(nastepnyWiersz, nastepnaKolumna)) {
+    plansza[nowyWiersz][nowaKolumna] = 's';
+    graczWiersz = graczWiersz + przesunWiersz;
+    graczKolumna = graczKolumna + przesunKolumne;
+    rysujPlansze();
+    rysujGracza();
+  }
+}
+
+function wolnePole(wiersz, kolumna) {
+  // pole poza planszą nie jest wolne!
+  if (!poleJestNaPlanszy(wiersz, kolumna)) {
+    return false;
+  }
+  // wolne są tylko pola oznaczone literką `s`
+  return plansza[wiersz][kolumna] == 's';
+}
+
+function poleZKamieniem(wiersz, kolumna) {
+  // pole poza planszą nie ma kamienia
+  if (!poleJestNaPlanszy(wiersz, kolumna)) {
+    return false;
+  }
+  // pola z kamieniem oznaczone sa literką `k`
+  return plansza[wiersz][kolumna] == 'k';
+}
+
+function poleZDziura(wiersz, kolumna) {
+  // pole poza planszą nie ma kamienia
+  if (!poleJestNaPlanszy(wiersz, kolumna)) {
+    return false;
+  }
+  // pola z dziurą oznaczone sa literką `d`
+  return plansza[wiersz][kolumna] == 'd';
+}
+
+function poleJestNaPlanszy(wiersz, kolumna) {
+  return wiersz >= 0 && wiersz < plansza.length && kolumna >= 0 &&
+    kolumna < plansza[wiersz].length;
+}
+
+// rejestracja wystąpienia zdarzenia
+registerKeyPressHandler(obsluzKlawisz);
+
+// rysujemy całą planszę
+rysujPlansze();
+
+// dodajemy gracza
+rysujGracza();
