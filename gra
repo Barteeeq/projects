@@ -1,0 +1,168 @@
+var plansza = [
+    ['S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', 'S', 'S', 'S', 'S', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', 'S', 'S', 'S', 'S', 'K', ' ', ' ', 'S', 'S', 'S', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', 'S', 'S', 'S', 'S', ' ', ' ', 'K', 'S', 'S', 'S', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', 'S', 'S', ' ', ' ', 'K', ' ', 'K', ' ', 'S', ' ', ' ', 'K', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', 'S', 'S', ' ', 'S', ' ', 'S', 'S', ' ', ' ', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', 'S', ' ', 'S', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S'],
+    ['S', ' ', 'K', ' ', ' ', 'K', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'D', 'S'],
+    ['S', ' ', 'S', ' ', 'S', ' ', 'S', 'S', 'S', ' ', ' ', ' ', 'S', 'S', ' ', ' ', ' ', ' ', 'S'],
+    ['S', ' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ',' ', ' ', ' ', 'S', 'S', 'S', 'S', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', ' ', 'S', 'S', 'S', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', 'K', ' ', ' ', 'K', ' ', ' ', ' ', ' ', ' ', 'S', ' ', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ', ' ', ' ', 'S', ' ', ' ', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', ' ', 'K', ' ', 'K', ' ', ' ', ' ', 'S', 'K', ' ', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', ' ', ' ', ' ', 'S', ' ', ' ', ' ', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S'],
+    ['S', ' ', ' ', ' ', 'S', ' ', 'S', 'S', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'S'],
+    ['S', ' ', 'K', ' ', ' ', 'K', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ', ' ', 'S'],
+    ['S', 'S', 'S', 'S', 'S', ' ', 'S', 'S', 'S', ' ', 'S', ' ', 'S', 'S', ' ', ' ', ' ', ' ', 'S'],
+    ['S', 'S','S', 'S', 'S', ' ', ' ', ' ', ' ', ' ', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+    ['S', 'S','S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S'],
+];
+
+// Pozycja gracza na planszy.
+var x_gracza = 11, y_gracza = 8;
+
+function ruchGracza(dx, dy) {
+  var x_docelowe = x_gracza + dx;
+  var y_docelowe = y_gracza + dy;
+  if (plansza[y_docelowe][x_docelowe] == ' ') {
+    x_gracza = x_docelowe;
+    y_gracza = y_docelowe;
+  } else if (plansza[y_docelowe][x_docelowe] == 'K') {
+    var x_docelowe_kamien = x_docelowe + dx;
+    var y_docelowe_kamien = y_docelowe + dy;
+    if (plansza[y_docelowe_kamien][x_docelowe_kamien] == ' ') {
+      // Normalne przesunięcie kamienia.
+      plansza[y_docelowe][x_docelowe] = ' ';
+      plansza[y_docelowe_kamien][x_docelowe_kamien] = 'K';
+      x_gracza = x_docelowe;
+      y_gracza = y_docelowe;
+    } else if (plansza[y_docelowe_kamien][x_docelowe_kamien] == 'D') {
+      // Dziura - kamień do niej spada i znika.
+      plansza[y_docelowe][x_docelowe] = ' ';
+      x_gracza = x_docelowe;
+      y_gracza = y_docelowe;
+    }
+  } else if (plansza[y_docelowe][x_docelowe] == 'D') {
+    // Czy możemy przeskoczyć dziurę?
+    var x_docelowe_za_dziura = x_docelowe + dx;
+    var y_docelowe_za_dziura = y_docelowe + dy;
+    if (plansza[y_docelowe_za_dziura][x_docelowe_za_dziura] == ' ') {
+      // Tak, droga wolna!
+      x_gracza = x_docelowe_za_dziura;
+      y_gracza = y_docelowe_za_dziura;
+    }
+  }
+}
+
+function obsluzKlawisz(e) {
+  if (e == 37) {
+    // Lewo.
+    ruchGracza(-1, 0);
+  } else if (e == 38) {
+    // Góra.
+    ruchGracza(0, -1);
+  } else if (e == 39) {
+    // Prawo.
+    ruchGracza(1, 0);
+  } else if (e == 40) {
+    // Dół.
+    ruchGracza(0, 1);
+  }
+  rysujPlansze();
+}
+
+function rysujPlansze() {
+  for (var i = 0; i < plansza.length; i++) {
+    var y = 20 + i * 32;
+    for (var j = 0; j < plansza[i].length; j++) {
+      var element = plansza[i][j];
+      var x = 20 + j * 32;
+      // Najpierw czyścimy zawartość pola planszy.
+      fillRectangle(x, y, 32, 32, fillStyles.gray);
+      // Potem rysujemy odpowiedni obrazek.
+      if (i == y_gracza && j == x_gracza) {
+        rysujGracza(x, y);
+      } else if (element == 'S') {
+        rysujSciane(x, y);
+      } else if (element == 'K') {
+        rysujKamien(x, y);
+      } else if (element == 'D') {
+        rysujDziure(x, y);
+      }
+    }
+  }
+}
+
+function rysujGracza(x, y) {
+  // Głowa:
+  fillCircle(x + 16, y + 5, 5, fillStyles.yellow);
+  fillCircle(x + 16, y + 6, 5, fillStyles.yellow);
+  fillCircle(x + 15, y + 5, 5, fillStyles.yellow);
+  fillCircle(x + 15, y + 6, 5, fillStyles.yellow);
+  // Ręce:
+  fillRectangle(x + 4, y + 10, 24, 4, fillStyles.blue);
+  fillRectangle(x + 3, y + 10, 3, 4, fillStyles.cyan);
+  fillRectangle(x + 24, y + 10, 3, 4, fillStyles.cyan);
+  // Tułów:
+  fillRectangle(x + 10, y + 14, 10, 5, fillStyles.blue);
+  // Nogi:
+  fillRectangle(x + 10, y + 19, 10, 4, fillStyles.green);
+  fillRectangle(x + 11, y + 22, 3, 10, fillStyles.green);
+  fillRectangle(x + 16, y + 22, 3, 10, fillStyles.green);
+}
+
+function rysujSciane(x, y) {
+  fillRectangle(x, y, 8, 8, fillStyles.brown);
+  fillRectangle(x + 8, y, 16, 8, fillStyles.blue);
+  fillRectangle(x + 24, y, 8, 8, fillStyles.brown);
+  fillRectangle(x, y + 8, 16, 8, fillStyles.blue);
+  fillRectangle(x + 16, y + 8, 16, 8, fillStyles.brown);
+  fillRectangle(x, y + 16, 8, 8, fillStyles.blue);
+  fillRectangle(x + 8, y + 16, 16, 8, fillStyles.brown);
+  fillRectangle(x + 24, y + 16, 8, 8, fillStyles.blue);
+  fillRectangle(x, y + 24, 16, 8, fillStyles.brown);
+  fillRectangle(x + 16, y + 24, 16, 8, fillStyles.blue);
+}
+
+function rysujKamien(x, y) {
+  fillCircle(x + 15, y + 15, 13, drawStyles.white);
+  fillCircle(x + 15, y + 16, 13, drawStyles.white);
+  fillCircle(x + 16, y + 15, 13, drawStyles.white);
+  fillCircle(x + 16, y + 16, 13, drawStyles.white);
+  drawCircle(x + 15, y + 15, 15, drawStyles.gray);
+  drawCircle(x + 15, y + 16, 15, drawStyles.gray);
+  drawCircle(x + 16, y + 15, 15, drawStyles.gray);
+  drawCircle(x + 16, y + 16, 15, drawStyles.gray);
+  drawCircle(x + 15, y + 15, 14, drawStyles.gray);
+  drawCircle(x + 15, y + 16, 14, drawStyles.gray);
+  drawCircle(x + 16, y + 15, 14, drawStyles.gray);
+  drawCircle(x + 16, y + 16, 14, drawStyles.gray);
+  fillCircle(x + 10, y + 9, 2, fillStyles.cyan);
+  fillCircle(x + 20, y + 8, 2, fillStyles.cyan);
+  fillCircle(x + 17, y + 19, 2, fillStyles.cyan);
+  fillCircle(x + 21, y + 13, 2, fillStyles.magenta);
+  fillCircle(x + 11, y + 12, 2, fillStyles.magenta);
+  fillCircle(x + 13, y + 21, 2, fillStyles.magenta);
+  fillCircle(x + 15, y + 10, 2, fillStyles.green);
+  fillCircle(x + 21, y + 20, 2, fillStyles.green);
+  fillCircle(x + 8, y + 18, 2, fillStyles.green);
+}
+
+function rysujDziure(x, y) {
+  drawCircle(x + 15, y + 15, 15, drawStyles.brown);
+  drawCircle(x + 15, y + 16, 15, drawStyles.brown);
+  drawCircle(x + 16, y + 15, 15, drawStyles.brown);
+  drawCircle(x + 16, y + 16, 15, drawStyles.brown);
+  drawCircle(x + 15, y + 15, 14, drawStyles.brown);
+  drawCircle(x + 15, y + 16, 14, drawStyles.brown);
+  drawCircle(x + 16, y + 15, 14, drawStyles.brown);
+  drawCircle(x + 16, y + 16, 14, drawStyles.brown);
+}
+
+rysujPlansze();
+registerKeyPressHandler(obsluzKlawisz);
