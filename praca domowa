@@ -1,0 +1,104 @@
+import math
+
+#Pod jakimi indeksami sami w tablicy znajdują się najmniejsze wartości:
+
+myTable = [1, 2, 3, 3, -2, -2, 0]
+myMin = int(input())
+index = ""
+i = 1
+while i < len(myTable):
+    if myTable[i] == myMin:
+        index += " " + str(i)
+    i += 1
+print("odp: {0:s}".format(index))
+
+# Znajdź liczby całkowite, przepisz do 2 tablicy
+
+numbers = [3, 4, 2.32, 32.23, 123.33]
+ile = 0
+for el in numbers:
+    if math.fmod(el, 1) == 0:
+        ile += 1
+nowaLista = [0 for _ in range(ile)]
+j = 0
+i = 0
+while i < len(numbers):
+    if math.fmod(numbers[i], 1) == 0:
+        while j < len(nowaLista):
+            print(j)
+            nowaLista[j] = int(numbers[i])
+            j += 1
+            break
+    i += 1
+print(len(nowaLista))
+print("--------------------")
+print(nowaLista[0])
+print(nowaLista[1])
+
+# Napisz własną program round, która przyjmuje liczbę rzeczywistą oraz liczbę cyfr po przecinku i zwraca podaną liczbę rzeczywistą zaokrągloną do podanej liczby cyfr po przecinku.
+
+print("Podaj liczbe")
+inp = input()
+inpStringTable = inp.split('.')
+print("Podaj liczbe miejsc po ,")
+doIlu = int(input())
+odp = "{0:s}.".format(inpStringTable[0])
+characters = inpStringTable[1]
+for i in range(0, doIlu):
+    odp += str(characters[i])
+
+print("Podana wartosc {0:s} przyblirzenie {1:s}".format(inp, odp))
+
+# ciag geometryczny
+inp = input()
+n = float(input())
+def ciag(inp, n):
+    i = 0
+    lista = inp.split(",")
+    el1 = float(lista[1])
+    el2 = float(lista[0])
+    s = ""
+    c = 1
+    q = el1 / el2
+    while i < n:
+        c *= q
+        s += " " + str(c)
+        i += 1
+    print(s)
+
+
+
+#dla n wyraz ciągu
+
+imp = input()
+lista = imp.split(',')
+el1 = float(lista[1])
+el2 = float(lista[0])
+q = el1 / el2 
+print("n wyraz ciągu")
+n = int(input())
+i = 1
+c = el2
+while i < n:
+    c *= q
+    i += 1
+print(c)
+
+# sumuj liczby podane przez użytkownika
+
+imp = input()
+lista = imp.split(',')
+el1 = float(lista[1])
+el2 = float(lista[0])
+q = el1 / el2
+n = int(input())
+i = 1
+c = el2
+mySum = el2
+while i < n:
+    c *= q
+    mySum += c
+    i += 1
+    print(mySum)
+
+
