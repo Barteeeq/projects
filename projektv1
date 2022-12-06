@@ -1,0 +1,306 @@
+def scena1():
+    import time
+    print("""
+        Witaj w grze przygodowej!
+        Zacznijmy akcje!
+        Patryk budzi się w nocy w soim pokoju. Jedyne co usłyszał to głośny huk dobiegający z ogródka.
+        Teraz ma dwie opcję może zostać w swoim pokoju w zasikanych spodniach albo może sprawdzić co się dzieje na zewnątrz.
+       
+        Jaki jest twój wybór: zostajesz czy wychodzisz? (ZOSTAJE/WYCHODZE)
+    """)
+    r1 = input()
+    time.sleep(3)
+    odp = 'incorrect'
+    while(odp =='incorrect'):
+        if(r1.upper()=="ZOSTAJE"):
+            print("\nPatryk decyduje się zostać w pokoju i kończy się na tym że zostaje w nim uwięziony na zawsze ponieważ nikogo nie obchodził i nikt nie przyszedł mu pomóc.")
+            odp = 'correct'
+        elif(r1.upper()=="WYCHODZE"):
+            print("\nPatryk wychodzi z pokoju w ciszy i idzie głównym korytarzem.")
+            odp ='correct'
+            scena2()
+        else:
+            print("Wybierz właściwie:(ZOSTAJE/WYCHODZE).")
+            r1 = input()
+
+def scena2():
+    import time
+    print("""
+            Idąc głównym korytarzem dostrzega przez okno, że drzwi od kurnika są odchylone. 
+            Myśląc o kurniku dochodzi do kuchni gdzie potyka się o swoje nogi bo jest ciamajdą, a gdy wstaje to dostrzega swoją babcie w stroju ninjy.
+            Gdy dochodzi do kontaktu wzrokowego babcia drze morde hajjjaaa i wyskakuje przez okno. 
+            
+            Wybierz właściwie: sprawdzasz o co chodziło czy zostajesz w kuchni? (SPRAWDZAM/ZOSTAJE)
+            """)
+    time.sleep(3)
+    r1 = input()
+    odp = 'incorrect'
+    while(odp=='incorrect'):
+        if(r1.upper()=="SPRAWDZAM"):
+            print("""\nW tym momencie patryk szybko idzie do pokoju zmienić zasikane spodnie. Po 5 minutach wychodzi na podwórko gdzie doświadcza dziwnego widoku.""")
+            time.sleep(3)
+            print("""\nDostrzega jego babcie ninja ujeżdżającą ogromnego lisa oraz roztrzaskany kurnik z masą wylewającej się z niego krwi. 
+            \nBabcia ucieka, a jedyne co zostało po jego drogocnnych kurach to złote jaja.""")
+            odp = 'correct'
+            wybor="True"
+        elif(r1.upper()=='ZOSTAJE'):
+            print("""\nPatryk zdecydował się nie sprawdzać o co chodziło z jego babcią. Po minucie pomyślunku usiadł w kącie i zaczął jeść marmeladę.""")
+            odp='correct'
+            wybor="False"
+        else:
+            print("Zła odpowiedź. Wybierz właściwie: (SPRAWDZAM/ZOSTAJE).")
+            r1=input()
+    time.sleep(5)
+    scena3(wybor)
+
+def scena3(wartosc_wyboru):
+    import time
+    print("""\n\nPatryk bez pomyślunku musiał pomścić swoje kury za wszelką cenę. Nawet jeżeli musiałby zabić swoją babcię.""")
+    time.sleep(3)
+    if(wartosc_wyboru=="True"):
+        time.sleep(3)
+        print("""\nI wtedy w głowie narodził mu się świetny pomysł. Ze złotych jaj, które mu zostały stworzy broń jakiej jeszcze świat nie widział.\nStwierdził, że zacznie przemierzać świat za swoją zabójczą babcią.""")
+        time.sleep(3)
+        print("\nPo wykonaniu złotego miecza, i założeniu poprawnych ciuchów wybrał się do lasu wytropić babcię.\nPo 15 minutach wędrówki zobaczył coś bardzo dziwnego, dziwnego na tyle że nie mógł powiedzieć co to było.")
+        time.sleep(3)
+        print("\nByło to dziwne lustro w środku lasu. Po chwili oglądania go dookoła zdedydował się go dotknąc, i to był błąd.\nLustro wciągnęło go do środka jakby to był portal. Nie mineło 10 sekund, a on znajdował się w zupełnie innym świecie. CDN" )
+        time.sleep(3)
+    elif(wartosc_wyboru=="False"):
+        print("\nZły wybór umierasz :) RIP Patryk 'Małe jaja' R. 2005-2022 spoczywaj w pokoju mało jajeczny." )
+        scena1()
+scena1()
+print("\n\n")
+print("=================================Koniec rozdziału 1=================================")
+
+def scena4():
+    import time
+    print("""Witaj w 2 rozdziale gry przygodowej!
+        Patryk obudził się nagi w piwnicy zbitej deskami, po chwili widzi Pana w czarnym ubraniu z ogromnym dil*osem zbliżającego się w jego strone.
+    Co robisz? Krzyczysz i próbujesz się uwolnić czy milczysz i dajesz sie ponieść Panu w czarnej czapce? (KRZYCZE/MILCZE)
+    """)
+    r2 = input()
+    time.sleep(3)
+    odp = 'incorrect'
+    while(odp =='incorrect'):
+        if(r2.upper()=="KRZYCZE"):
+            print("\n Patryk drze się na kolesia co chce zrobić z tym, po chwili Patryk uwalnia się siłą kungfu i biega nagi po mieście")
+            odp = 'correct'
+            scena5()
+        elif(r2.upper()=="MILCZE"):
+            print("\n Miły Pan w czarnej czapce zaczyna robić to co sie robi w filmach dla dorosłych.")
+            odp ='correct'
+            
+def scena5():
+    import time
+    print(""" W mieście Patryk dojrzał stertę ubrań i menela. Co robisz? Bijesz menela i kradniesz ubrania czy kradniesz ubrania?(KRADNE/BIJE)
+            """)
+    time.sleep(3)
+    r2 = input()
+    odp = 'incorrect'
+    while(odp=='incorrect'):
+        if(r2.upper()=="KRADNE"):
+            print("""\n Patryk ukradł ubrania i uciekł w poszukiwaniu pożywienia.
+            """)
+            time.sleep(3)
+            odp = 'correct'
+            wybor="True"
+        elif(r2.upper()=="BIJE"):
+            print("""\n Patryk postanowił pobić menela jednak on zaskoczył go i wsadził mu paruwe do mordy. Patryk umiera od uduszenia. RIP Patryk 'Małe jaja' R. 2005-2022 spoczywaj w pokoju mało jajeczny.
+            """)
+            odp = 'correct'
+            wybor = "False"
+        else:
+            print('\n Zły wybór spróbuj jeszcze raz?')
+            time.sleep(3)
+            print("\n Co robisz? Bijesz menela i kradniesz ubrania czy kradniesz ubrania?")
+            r2=input()
+    scena6(wybor)
+
+def scena6(wartosc_wyboru):
+    import time
+    print("""\n Patryk zobaczył sklep spożywczy Stokrotka, postanowił wykorzystać innego menela do tego aby on okradł sklep i przyniósł ci konserwe.""")
+    time.sleep(2)
+    if(wartosc_wyboru=="True"):
+        time.sleep(3)
+        print("""\n Patryk sie nawpierdalał i poszedł szukać babki.""")
+        time.sleep(3)
+        print("\n Po chwili chodzenia po dziwnym mieście z menelami znalazł złote jajo i pomyślał *Pewnie nie długo znajde tą starą ropuchę*. ")
+        time.sleep(3)
+        print("\n Nagle zobaczył kolejne jajo pomyślał *Pewnie nie długo będzie tu Stachu Johnes, powinien mi pomóc*.")
+        scena7()
+    elif(wartosc_wyboru=="False"):
+        print("\n Patryk ginie z głodu. RIP Patryk 'Małe jaja' R. 2005-2022 spoczywaj w pokoju mało jajeczny.")
+    
+def scena7():
+    import time
+    print("""\n Patryk zauważył wejście na pole. Co robisz? Wchodzisz na Pole czy idziesz dalej drogą?(WCHODZE/IDE DALEJ).""")
+    time.sleep(2)
+    r2 = input()
+    odp = 'incorrect'
+    while(odp=='incorrect'):
+        if(r2.upper()=="WCHODZE"):
+            time.sleep(3)
+            print("""\n Patryk wchodzi na Pole i widzi starca z motyką, postanawia do niego podbić.""")
+            time.sleep(3)
+            print("""\n Starzec mu mówi *Tyś ma Jabole? Bo ci przypierdole*.""")
+            time.sleep(3) 
+            print("""\n 'Nie mam Jaboli, orzeł ma ale nie da, szukam Babki, sadzi z dupy złotymi jajami.' Orzekł Patryk.""")  
+            time.sleep(3)
+            print("""\n Stachu: Widziałem ją poszła w tamtą strone, oddawaj tą konserwe młody człowieku.""") 
+            time.sleep(3)
+            odp = 'correct'
+            wybor = "True"
+        elif(r2.upper()=="IDE DALEJ"):
+            print("\n Patryk widzi na ulicy wilki.")
+            time.sleep(3)
+            print("\n Ucieka przed nimi ąż do bramy swojego domu.")
+            odp = 'correct '
+            wybor = "False"
+        else:
+            print("\n Wybierz jeszcze raz kołodzieju, (WCHODZE/IDE DALEJ).")
+            r2 = input()
+    scena8(wybor)
+
+def scena8(wartosc_wyboru):
+    import time
+    print("""\n Patryk podążył drogą wyznaczoną przez Stacha, spotykasz babcie po 10 kilometrach.
+     Co robisz? Bierzesz Babke za habety i wracasz do domu czy zabierasz do piwnicy Pana z czarną czapką?""")
+    if(wartosc_wyboru=="True"):
+        time.sleep(3)
+        print("""\n Patryk wraca z babką do miasta, wchodzicie do restaruacji i zamawiacie menelowe naleśniki.""")
+        time.sleep(3)
+        print("""\n 'Co ty robisz stara ropucho? Czy cie do reszty poje*ało? Straciłem przez ciebie darmową konserwe.' Powiedział Patryk.""")
+        time.sleep(3) 
+        print("""\n Babcia zaczyna gotować zupe z niczego i karmi całe miasto meneli. 
+        Menele Budują wieżowce i całe imperium.
+        Tworzą urzędy i nową cywilizacje""")  
+        time.sleep(3)
+        print("""\n *Gdzieś w roku 2049* Patryk postanawia zjeść 30 letnią zupe i odchodzi w niepamięc nowej cywilizacji.""")
+        time.sleep(3)
+    elif(wartosc_wyboru=="False"):
+        print("""\n Patryk wchodzi do domu wskakuje na garba babci i idzie dalej korytarzem, 
+        spotykacie Pana z czarną czapką, który chce pozyskać z was organy na handel na czarnym rynku. """)
+        time.sleep(3)
+        print(" Babka się przestraszyła i uciekła z Patrykiem na garbie do lustra i żyli tam długo i szczęśliwie , aż.... CDN")
+        time.sleep(3)
+    
+scena4()
+print("\n\n")
+print("=================================Koniec rozdziału 2=================================")
+
+def scena9():
+    import time
+    print("""Witaj w 3 rozdziale gry przygodowej!
+        Patryk budzi się w swoim łóżku i zadaje sobie pytanie czy to wszystko było snem. Zchodzi do kuchni i wszystko wydaje się normalne,
+        idzie do kurnika i o dziwo są tam kury. Czy to było naprawdę, czy to było prawdziwe? Zadał sobie to pytanie Patryk, a wtedy mama go zawołała na obiad.
+        Idziesz na obiad czy zostajesz? (IDE/ZOSTAJE)
+    """)
+    r3 = input()
+    time.sleep(3)
+    odp = 'incorrect'
+    while(odp =='incorrect'):
+        if(r3.upper()=="IDE"):
+            print("\n Patryk idzie na obiad do kuchnii. Po drodze mija swoje siostry grające w piłkę co wydaje mu się podejrzanę ale nie zbyt go to obchodzi w końcu świat wrócił do normalności.")
+            odp = 'correct'
+            time.sleep(3)
+            scena10()
+        elif(r3.upper()=="ZOSTAJE"):
+            print("\n Patryk zostaje na dworze i postanawia nakarmić kury. Nakarmione kury nagle zaczęły rosnąć i zdeptały Patryka. RIP Patryk 'Małe jaja' R. 2005-2022 spoczywaj w pokoju mało jajeczny. ")
+            odp = 'correct'
+        else:
+            print('\nZły wybór spróbuj jeszcze raz?')
+            time.sleep(3)
+            print("\nCo robisz? (IDE/ZOSTAJE)")
+            r3=input()
+
+def scena10():
+    import time
+    print("""\n Mama przyrządziła pyszny rosół z kury która przestała znosić jajka. Patryk usiadł i degustował się jedzeniem aż nie przyszedł jego stary i kazał mu wykonać misję bojową. Zostajesz i jesz, czy idziesz na misje bojową starego? (ZOSTAJE/IDE)
+            """)
+    time.sleep(3)
+    r3 = input()
+    odp = 'incorrect'
+    while(odp=='incorrect'):
+        if(r3.upper()=="IDE"):
+            print("""\n Patryk zjadł zupę i zaczał iść za starym do lasu, aż nagle spotkał Rafała na rolkach, Rafał jako że znał Patryka podjechał się przywitać i jak zwykle go zwyzywał. Nagle stary się na niego spojrzał i powiedział do Patryka 'Dobrze ci tak' i zaczał iśc dalej.
+            """)
+            time.sleep(3)
+            odp = 'correct'
+            wybor="True"
+        elif(r3.upper()=="ZOSTAJE"):
+            print("""\n Patryk zdecydował się zostać i dalej jadł rosół... gdy nagle...
+            """)
+            odp = 'correct'
+            wybor = "False"
+        else:
+            print('\n Zły wybór spróbuj jeszcze raz.')
+            time.sleep(3)
+            print("\n Co robisz? (ZOSTAJE/IDE).")
+            r3=input()
+    scena11(wybor)
+
+def scena11(wartosc_wyboru):
+    import time
+    if(wartosc_wyboru=="True"):
+        time.sleep(3)
+        print("""\n Patryk podążał za starym już tak godzinę aż w końcu doszli do miejsca gdzie stary miał pokazać o co chodzi w misji bojowej.""")
+        time.sleep(3)
+        print("\n Stary stanął przyd dziwnie wyglądającym i za bardzo zielonym drzewie i powiedział ' O to synu jest właśnie ogromna fasola' I wtedy Patryk oniemiał. ")
+        time.sleep(3)
+        print("\nPo któtkiej chwili stary wyjaśnił mu że jego zadaniem jest wspiąć się na góre fasoli i ukraść olbrzymowi kure znoszącą złote jaja. Patryk zastanowił się i stwierdził że to nie może być takie trudne ukraść kurę więc zabrał się do roboty.")
+        scena12()
+    elif(wartosc_wyboru=="False"):
+        print("\n Kura jak to się okazało przestała znosić jaja bo zgineła przez zjedzenie trucizny. Patryk po 24 godzinach umiera w męczarniach. RIP Patryk 'Małe jaja' R. 2005-2022 spoczywaj w pokoju mało jajeczny. ")
+    
+def scena12():
+    import time
+    print("""\n Patryk wspiął się łodygą fasoli na góre i znalazł się nad chmurami. Zobaczył duży dom, stodołę i kurnik. Usłyszął również bardzo donośne chrapanie mimo tego że był dzień. Gdzie Patryk szuka Kury w domu czy w stodole? (DOM/KURNIK) """)
+    time.sleep(3)
+    r3 = input()
+    odp = 'incorrect'
+    while(odp == 'incorrect'):
+        if(r3.upper()=="DOM"):
+            time.sleep(3)
+            print("""\n Patryk zaczyna szukać po ogromnym domu, przechodzi przez rozmaite pokoje lecz unika sypialni, przejrzął wszystkie i nic nie znalazł aż zachciało mu się pić. """)
+            time.sleep(3)
+            print("""\n W poszukiwaniach czegoś do picia znalazł dużą miskę na podłodze, zdecydowanie wyższą od niego ale mógł się do niej dostać.""")
+            time.sleep(3) 
+            print("""\n Skorzystał z przeciwwagi i wystrzelił się do miski, przy okazji się wykąpał i napił gdy zobaczył coś co przykuło jego uwagę. Były to złote naczynia w zmywarce.""")  
+            time.sleep(3)
+            print("""\n Ów naczynia były odporne, mocne i ZŁOTE. Patryk zdeterminowany by znaleźć kurę próbuje się wydostać z miski... a tu nagle... """) 
+            time.sleep(3)
+            odp = 'correct'
+            wybor = "True"
+        elif(r3.upper()=="KURNIK"):
+            print("\n Patryk wchodzi do kurnika i pierwszę co widzi to kura siedząca na złotych jajach. Patryk czmycha po nią zabiera i szybko ucieka by pokazać staremu.")
+            time.sleep(3)
+            print("\n Patryk zjeżdża po łodydze fasoli i biegnie do domu by pokazać zdobycz.")
+            odp = 'correct '
+            wybor = "False"
+        else:
+            print("\n Wybierz jeszcze raz kołodzieju, (DOM/KURNIK).")
+            r3 = input()
+    scena13(wybor)
+
+def scena13(wartosc_wyboru):
+    import time
+    if(wartosc_wyboru=="True"):
+        time.sleep(3)
+        print("""\n Jedyne co widzi to cień opadający na niego, mimo tego że był dzień to zrobiło się ciemno i zimno. Chłód był wyczuwalny, Patryk się odwrócił i jedyne co zobaczył to swoją babcie giganta.""")
+        time.sleep(3)
+        print("""\n 'Co ty robisz stara ropucho? Czy cie do reszty poje*ało?' Powiedział Patryk jako że babka za długo lat przesiedziała w bibliotece to zaczeła głuchnąć i ślepnąć więc nie do końca rozumiała co mówił Patryk.
+        """)
+        time.sleep(3) 
+        print("""\n Babka umyła Patryka, namaściła, nakarmiła, dała w dupe bo nie wiedziała skąd się tam wziął i położyła go do ogromnego łóżka. Zamkneła drzwi na klucz i poszła.""")  
+        time.sleep(3)
+        print("""\n Babka jako stara babina zapomniała o Patryku i tak skończyła się historia biedaczyny że został zapomniany i umarł z głodu.""")
+    elif(wartosc_wyboru=="False"):
+        print("""\n Wracasz do domu 11 kilometrów turlając się na Garbie babci, 
+        wchodzicie do domu Pana z czarną czapką. """)
+        time.sleep(3)
+        print("\n Uciekasz z Babcią do lustra i żyjecie długo i szczęślwie.")
+        time.sleep(3)
+
+scena9()
+print("\n\n")
+print("=================================Koniec Gry=================================")
