@@ -1,4 +1,4 @@
-# Projekt pt. 'Gra' wersja v2.1
+# Projekt pt. 'Gra' wersja v2.2
 # Bartosz Skowroński, Jakub Świętoń
 def scena1():
     import time
